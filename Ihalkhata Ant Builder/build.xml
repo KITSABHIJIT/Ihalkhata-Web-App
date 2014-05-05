@@ -1,0 +1,514 @@
+<?xml version="1.0" ?> 
+<!-- ====================================================================== 
+     Feb 10, 2013 2:16:26 AM                                                        
+
+     CalBook  
+     This Ant file builds the CalBook ear 
+                   
+     Abhijit Roy                                                                
+     ====================================================================== -->
+<project name="CalBook" default="temp_clean"> 
+	<description>
+    	This Ant file builds the CalBook ear
+    </description>
+	<record action="start" append="false" loglevel="debug" name="CalBook.log"/>
+	<property file="calbook_build.properties" />
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+			<classpath>
+				<pathelement location="${ant-tasks-dir}/ant-contrib.jar" />
+			</classpath>
+	</taskdef>
+	<target name="project_jar_completion" depends="GenericComponents_compress,
+	SendMail_compress,
+	DataEntryService_compress,
+	ReportGenerationService_compress,
+	SpringDataAccess_compress,
+	DataCalculationService_compress,
+	PaymentService_compress" description="compile the source for all">
+		<echo message="Project related jar's successfully created in  '${temp.jar.dir}'"></echo>
+	</target>
+	
+
+	<!-- ============================================= 
+      target: compile the Generic Components              
+     ============================================= -->
+	
+	<target name="GenericComponents_init" depends="clean_temp">
+	<echo message="Creating directory '${temp.jar.dir}/GenericComponents' if not present "></echo>
+		<mkdir dir="${temp.jar.dir}/GenericComponents"/>
+	</target>
+	
+	<target name="GenericComponents_compile" depends="GenericComponents_init" >
+		<echo message="Compiling: '${GenericComponents.src.dir}' to '${temp.jar.dir}/GenericComponents'"> </echo>
+		<javac destdir="${temp.jar.dir}/GenericComponents" debug="true" srcdir="${GenericComponents.src.dir}"  optimize="on" source="1.5" target="1.5"  >
+			<classpath>
+				<fileset dir="${temp.jar.dir}/library" >  
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="GenericComponents_compress" depends="GenericComponents_compile">
+		<echo message="Creating the jar: '${temp.jar.dir}/library/GenericComponents.jar'"> </echo>
+        <jar destfile="${temp.jar.dir}/library/GenericComponents.jar" basedir="${temp.jar.dir}/GenericComponents" />
+	</target>
+	
+	<!-- ============================================= 
+      target: compile the SendMail           
+     ============================================= -->
+	
+	<target name="SendMail_init" depends="clean_temp">
+		<echo message="Creating directory '${temp.jar.dir}/SendMail' if not present "></echo>
+		<mkdir dir="${temp.jar.dir}/SendMail"/>
+	</target>
+	
+	<target name="SendMail_compile" depends="SendMail_init" >
+		<echo message="Compiling: '${SendMail.src.dir}' to '${temp.jar.dir}/SendMail'"> </echo>
+		<javac destdir="${temp.jar.dir}/SendMail" debug="true" srcdir="${SendMail.src.dir}"  optimize="on" source="1.5" target="1.5"  >
+			<classpath>
+				<fileset dir="${temp.jar.dir}/library" >  
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="SendMail_compress" depends="SendMail_compile">
+		<echo message="Creating the jar: '${temp.jar.dir}/SendMail.jar'"> </echo>
+        <jar destfile="${temp.jar.dir}/library/SendMail.jar" basedir="${temp.jar.dir}/SendMail" />
+	</target>
+	
+	<!-- ============================================= 
+      target: compile the DataEntryService           
+     ============================================= -->
+	
+	<target name="DataEntryService_init" depends="clean_temp">
+		<echo message="Creating directory '${temp.jar.dir}/DataEntryService' if not present "></echo>
+		<mkdir dir="${temp.jar.dir}/DataEntryService"/>
+	</target>
+	
+	<target name="DataEntryService_compile" depends="DataEntryService_init" >
+		<echo message="Compiling: '${DataEntryService.src.dir}' to '${temp.jar.dir}/DataEntryService'"> </echo>
+		<javac destdir="${temp.jar.dir}/DataEntryService" debug="true" srcdir="${DataEntryService.src.dir}"  optimize="on" source="1.5" target="1.5"  >
+			<classpath>
+				<fileset dir="${temp.jar.dir}/library" >  
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="DataEntryService_compress" depends="DataEntryService_compile">
+		<echo message="Creating the jar: '${temp.jar.dir}/DataEntryService.jar'"> </echo>
+        <jar destfile="${temp.jar.dir}/library/DataEntryService.jar" basedir="${temp.jar.dir}/DataEntryService" />
+	</target>
+	
+	<!-- ============================================= 
+      target: compile the ReportGenerationService           
+     ============================================= -->
+	
+	<target name="ReportGenerationService_init" depends="clean_temp">
+		<echo message="Creating directory '${temp.jar.dir}/ReportGenerationService' if not present "></echo>
+		<mkdir dir="${temp.jar.dir}/ReportGenerationService"/>
+	</target>
+	
+	<target name="ReportGenerationService_compile" depends="ReportGenerationService_init" >
+		<echo message="Compiling: '${ReportGenerationService.src.dir}' to '${temp.jar.dir}/ReportGenerationService'"> </echo>
+		<javac destdir="${temp.jar.dir}/ReportGenerationService" debug="true" srcdir="${ReportGenerationService.src.dir}"  optimize="on" source="1.5" target="1.5"  >
+			<classpath>
+				<fileset dir="${temp.jar.dir}/library" >  
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="ReportGenerationService_compress" depends="ReportGenerationService_compile">
+		<echo message="Creating the jar: '${temp.jar.dir}/ReportGenerationService.jar'"> </echo>
+        <jar destfile="${temp.jar.dir}/library/ReportGenerationService.jar" basedir="${temp.jar.dir}/ReportGenerationService" />
+	</target>
+	
+	<!-- ============================================= 
+      target: compile the SpringDataAccess           
+     ============================================= -->
+	
+	<target name="SpringDataAccess_init" depends="clean_temp">
+		<echo message="Creating directory '${temp.jar.dir}/SpringDataAccess' if not present "></echo>
+		<mkdir dir="${temp.jar.dir}/SpringDataAccess"/>
+	</target>
+	
+	<target name="SpringDataAccess_compile" depends="SpringDataAccess_init" >
+		<echo message="Compiling: '${SpringDataAccess.src.dir}' to '${temp.jar.dir}/SpringDataAccess'"> </echo>
+		<javac destdir="${temp.jar.dir}/SpringDataAccess" debug="true" srcdir="${SpringDataAccess.src.dir}"  optimize="on" source="1.5" target="1.5"  >
+			<classpath>
+				<fileset dir="${temp.jar.dir}/library" >  
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="SpringDataAccess_compress" depends="SpringDataAccess_compile">
+		<echo message="Creating the jar: '${temp.jar.dir}/SpringDataAccess.jar'"> </echo>
+        <jar destfile="${temp.jar.dir}/library/SpringDataAccess.jar" basedir="${temp.jar.dir}/SpringDataAccess" />
+	</target>
+	
+	<!-- ============================================= 
+      target: compile the DataCalculationService           
+     ============================================= -->
+	
+	<target name="DataCalculationService_init" depends="clean_temp">
+		<echo message="Creating directory '${temp.jar.dir}/DataCalculationService' if not present "></echo>
+		<mkdir dir="${temp.jar.dir}/DataCalculationService"/>
+	</target>
+	
+	<target name="DataCalculationService_compile" depends="DataCalculationService_init" >
+		<echo message="Compiling: '${DataCalculationService.src.dir}' to '${temp.jar.dir}/DataCalculationService'"> </echo>
+		<javac destdir="${temp.jar.dir}/DataCalculationService" debug="true" srcdir="${DataCalculationService.src.dir}"  optimize="on" source="1.5" target="1.5"  >
+			<classpath>
+				<fileset dir="${temp.jar.dir}/library" >  
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="DataCalculationService_compress" depends="DataCalculationService_compile">
+		<echo message="Creating the jar: '${temp.jar.dir}/DataCalculationService.jar'"> </echo>
+        <jar destfile="${temp.jar.dir}/library/DataCalculationService.jar" basedir="${temp.jar.dir}/DataCalculationService" />
+	</target>
+	
+	<!-- ============================================= 
+      target: compile the PaymentService           
+     ============================================= -->
+	
+	<target name="PaymentService_init" depends="clean_temp">
+		<echo message="Creating directory '${temp.jar.dir}/PaymentService' if not present "></echo>
+		<mkdir dir="${temp.jar.dir}/PaymentService"/>
+	</target>
+	
+	<target name="PaymentService_compile" depends="PaymentService_init" >
+		<echo message="Compiling: '${PaymentService.src.dir}' to '${temp.jar.dir}/PaymentService'"> </echo>
+		<javac destdir="${temp.jar.dir}/PaymentService" debug="true" srcdir="${PaymentService.src.dir}"  optimize="on" source="1.5" target="1.5"  >
+			<classpath>
+				<fileset dir="${temp.jar.dir}/library" >  
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="PaymentService_compress" depends="PaymentService_compile">
+		<echo message="Creating the jar: '${temp.jar.dir}/PaymentService.jar'"> </echo>
+        <jar destfile="${temp.jar.dir}/library/PaymentService.jar" basedir="${temp.jar.dir}/PaymentService" />
+	</target>
+	
+	
+	
+	<!-- ============================================= 
+      target: compile the ihalkhata Web           
+     ============================================= -->
+	
+	<target name="ihalkhata_init" depends="clean_temp">
+		<echo message="Creating directory '${temp.jar.dir}/ihalkhata' if not present "></echo>
+		<mkdir dir="${temp.jar.dir}/ihalkhata"/>
+		<mkdir dir="${temp.jar.dir}/library"/>
+	</target>
+
+	<!-- target: copy-library-files  -->
+    <target name="copy-library-files" depends="ihalkhata_init" description="description">
+		<copy todir="${temp.jar.dir}/library" includeemptydirs="false" overwrite="true">
+                <fileset dir="${jar.dir}"  includes="**/*.jar" excludes="javax.servlet-3.0.jar,.svn/**"/>
+        </copy>
+	</target>
+	
+	<target name="ihalkhata_compile" depends="copy-library-files, project_jar_completion" >
+		<echo message="Compiling: '${ihalkhata.src.dir}' to '${temp.jar.dir}/ihalkhata'"> </echo>
+		<javac destdir="${temp.jar.dir}/ihalkhata" debug="true" srcdir="${ihalkhata.src.dir}" optimize="on" source="1.5" target="1.5"  >
+			<classpath>
+				<fileset dir="${temp.jar.dir}/library" >  
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset dir="${jar.dir}" >  
+					<include name="javax.servlet-3.0.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+
+	<!-- ============================================= 
+      target: Minify ihalkhata Web           
+     ============================================= -->
+	 
+	 <target name="minify" depends="copy-web" description="Minifiy a set of files">
+		<available file="${ant-tasks-dir}/YUIAnt.jar" property="YUIANT_AVAILABLE" />
+		<fail unless="YUIANT_AVAILABLE" message="Run jar target to generate the required task"/>
+		<taskdef name="yuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">
+			<classpath>
+				<pathelement path="${ant-tasks-dir}/yuicompressor-2.3.6.jar" />
+				<pathelement path="${ant-tasks-dir}/YUIAnt.jar" />
+			</classpath>
+		</taskdef>
+		<echo>+-----------------------------+</echo>
+		<echo>|     Minification Started    |</echo>
+		<echo>+-----------------------------+</echo>
+		<sequential>
+		<echo>youcompressor for @{file}</echo>
+			<yuicompress linebreak="300" warn="false" munge="yes" preserveallsemicolons="true" 
+				outputfolder="${temp.web.dir}">
+				<fileset dir="${web.dir}" >
+					<include name="**/*.js" />
+					<include name="**/*.css" />
+				</fileset>
+			</yuicompress>
+		</sequential>
+		<echo>+-----------------------------+</echo>
+		<echo>|    Minification Finished    |</echo>
+		<echo>+-----------------------------+</echo>
+	</target>
+	  
+	<!-- target: copy-Web-files  -->
+	  <target name="copy-web">
+			<if>
+				<available file="${temp.web.dir}" type="dir" />
+					<then>
+						<echo message="Deleting ${temp.web.dir}............"/>
+						<delete dir="${temp.web.dir}" >
+						</delete>
+					</then>
+	    	</if>
+			<mkdir dir="${temp.web.dir}" />
+			<echo message="Copying Project Web Files of ${web.dir} Folder"/>
+			<copy todir="${temp.web.dir}">
+				<fileset dir="${web.dir}">
+					<exclude name=".svn/**,.metadata/**"/>
+					<exclude name="**/*.js" />
+					<exclude name="**/*.css" />
+				</fileset>
+			</copy>
+			<echo message="${temp.web.dir} Folder files successfully copied"/>
+
+    </target>
+    <!-- ================================= 
+      target: war build              
+     ================================= -->
+	
+	<target name="war-build" depends="clean_temp, ihalkhata_compile,minify">
+		<echo>Building the war file</echo>
+		<war destfile="${generated.product.dir}/${project.name}.war" webxml="${temp.web.dir}/WEB-INF/web.xml">
+			<fileset dir="${temp.web.dir}"/>
+			<lib dir="${temp.jar.dir}/library" />
+			<classes dir="${temp.jar.dir}/ihalkhata"/>
+		</war>
+	</target>
+
+	<!-- ================================= 
+      target: ear build              
+     ================================= -->
+	
+	 <target name="ear-build" depends="war-build" description="This Ant file builds the ${project.name}.ear" >
+    	<echo>Building the ear file</echo>
+    	<ear destfile="${generated.product.dir}/${project.name}.ear" appxml="${app.xml.dir}/META-INF/application.xml" compress="true" index="true" update="true" roundup="true" >
+    		<fileset dir="${generated.product.dir}" includes="*.jar,*.war"/>
+    	</ear>
+    </target>
+	
+	<!--
+     ================================= 
+      target: clean              
+     ================================= 
+	 
+	 <target name="-check-use-file" unless="file.exists">
+		<echo message="Checking existance of '${temp.jar.dir}' folder"></echo>
+		<available property="file.exists" file="${temp.jar.dir}"/>
+	</target>
+	 
+	<target name="clean_temp" depends="-check-use-file" if="${file.exists}">
+		<echo message="Cleaning '${temp.jar.dir}' folder"></echo>
+		<delete includeemptydirs="true">
+			<fileset dir="${temp.jar.dir}" includes="**/*"/>
+		</delete>
+	</target>
+	
+	<target name="temp_clean" depends="ear-build">
+		<delete dir="${temp.jar.dir}" />
+	</target>
+	-->
+	<!-- ============================================= 
+      target: compile the ihalkhata Admin           
+     ============================================= -->
+	
+	<target name="Admin_init" depends="clean_temp">
+		<echo message="Creating directory '${temp.jar.dir}/Admin' if not present "></echo>
+		<mkdir dir="${temp.jar.dir}/Admin"/>
+	</target>
+
+	
+	<target name="Admin_compile" depends="Admin_init" >
+		<echo message="Compiling: '${admin.dir}/src' to '${temp.jar.dir}/admin'"> </echo>
+		<javac destdir="${temp.jar.dir}/admin" debug="true" srcdir="${admin.dir}/src" optimize="on" source="1.5" target="1.5"  >
+			<classpath>
+				<fileset dir="${admin.dir}/WebContent/WEB-INF/lib" >  
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset dir="${jar.dir}" >  
+					<include name="javax.servlet-3.0.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+    <!-- ================================= 
+      target: Admin war build              
+     ================================= -->
+	
+	<target name="admin-war-build" depends=" Admin_compile">
+		<echo>Building the Admin war file</echo>
+		<war destfile="${generated.product.dir}/Admin.war" webxml="${admin.dir}/WebContent/WEB-INF/web.xml">
+			<fileset dir="${admin.dir}/WebContent"/>
+			<lib dir="${admin.dir}/WebContent/WEB-INF/lib" />
+			<classes dir="${temp.jar.dir}/admin"/>
+		</war>
+	</target>
+	
+    <!-- ================================= 
+      target: clean              
+     ================================= -->
+	<target name="clean_temp" >
+		<if>
+			<available file="${temp.jar.dir}" type="dir" />
+			<then>
+				<echo message="Cleaning '${temp.jar.dir}' folder"></echo>
+				<delete includeemptydirs="true">
+					<fileset dir="${temp.jar.dir}" includes="**/*"/>
+				</delete>
+			</then>	
+		</if>
+		<if>
+			<available file="${temp.web.dir}" type="dir" />
+			<then>
+				<echo message="Cleaning '${temp.web.dir}' folder"></echo>
+				<delete includeemptydirs="true">
+					<fileset dir="${temp.web.dir}" includes="**/*"/>
+				</delete>
+			</then>	
+		</if>
+		<if>
+			<available file="${generated.product.dir}" type="dir" />
+			<then>
+				<echo message="Cleaning ${generated.product.dir} folder"></echo>
+				<delete includeemptydirs="true">
+					<fileset dir="${generated.product.dir}" includes="**/*"/>
+				</delete>
+			</then>	
+			<else>
+				<mkdir dir="${generated.product.dir}" />
+			</else>
+		</if>
+	</target>
+	
+	<!--<target name="temp_clean" depends="ear-build,admin-war-build">-->
+	<target name="temp_clean" depends="ear-build">
+		<delete dir="${temp.jar.dir}" />
+		<delete dir="${temp.web.dir}" />
+	</target>
+	
+	
+	
+    <!-- ================================= 
+      target: Deploy in JBOSS         
+     ================================= -->
+	 
+	<target name="jboss" description="Creates and deploy's ear in JBOSS">
+		<sequential>
+			 <antcall target="stop-jboss" />
+			 <antcall target="temp_clean" />
+			 <copy file="${generated.product.dir}/${project.name}.ear" todir="${jboss.deploy.dir}" verbose="true"/>
+			 <antcall target="start-jboss" />
+		</sequential>
+	</target>
+	<!-- Stop Jboss -->
+	<target name="stop-jboss" description="Stops JBOSS Server" >
+		<exec executable="${jboss.bin.dir}/shutdown.bat" spawn="false">
+			<arg line="-S" />
+		</exec>
+		<echo>+-----------------------------+</echo>
+		<echo>| J B O S S   S T O P P E D   |</echo>
+		<echo>+-----------------------------+</echo>
+	</target>
+
+	<!-- Start Jboss -->
+	<target name="start-jboss" description="Starts JBOSS Server" >
+		<exec executable="${jboss.bin.dir}/run.bat" spawn="false">
+		</exec>
+		<echo>+-----------------------------+</echo>
+		<echo>| J B O S S   S T A R T E D   |</echo>
+		<echo>+-----------------------------+</echo>
+	</target>
+	
+	
+	    <!-- ================================= 
+      target: Deploy in Apache Tomacat         
+     ================================= -->
+	 
+	<target name="tomcat" description="Creates and deploy's ear in Apache Tomacat">
+		<sequential>
+			 <antcall target="stop-tomcat" />
+			 <antcall target="temp_clean" />
+			 <if>
+				<available file="${tomcat.deploy.dir}/${project.name}.war" />
+					<then>
+						<echo message="Cleaning ${tomcat.deploy.dir}/${project.name}.war"></echo>
+						<delete file="${tomcat.deploy.dir}/${project.name}.war"/>
+					</then>	
+			</if>
+			<if>
+				<available file="${tomcat.deploy.dir}/${project.name}" type="dir" />
+					<then>
+						<echo message="Cleaning ${tomcat.deploy.dir}/${project.name} Folder"></echo>
+						<delete dir="${tomcat.deploy.dir}/${project.name}"/>
+					</then>	
+			</if>
+			 <if>
+				<available file="${tomcat.deploy.dir}/Admin.war" />
+					<then>
+						<echo message="Cleaning ${tomcat.deploy.dir}/Admin..war"></echo>
+						<delete file="${tomcat.deploy.dir}/Admin..war"/>
+					</then>	
+			</if>
+			<if>
+				<available file="${tomcat.deploy.dir}/Admin." type="dir" />
+					<then>
+						<echo message="Cleaning ${tomcat.deploy.dir}/Admin. Folder"></echo>
+						<delete dir="${tomcat.deploy.dir}/Admin."/>
+					</then>	
+			</if>
+			 <copy file="${generated.product.dir}/${project.name}.war" todir="${tomcat.deploy.dir}" verbose="true"/>
+			 <!--<copy file="${generated.product.dir}/Admin.war" todir="${tomcat.deploy.dir}" verbose="true"/>-->
+			 <antcall target="start-tomcat" />
+		</sequential>
+	</target>
+	<!-- Stop tomcat -->
+	<target name="stop-tomcat" description="Stops Apache Tomacat Server" >
+		<exec executable="${tomcat.bin.dir}/shutdown.bat" spawn="false">
+			<arg line="-S" />
+		</exec>
+		<echo>+-----------------------------+</echo>
+		<echo>| T O M C A T   S T O P P E D |</echo>
+		<echo>+-----------------------------+</echo>
+	</target>
+
+	<!-- Start tomcat -->
+	<target name="start-tomcat" description="Starts tomcat Server" >
+		<exec executable="${tomcat.bin.dir}/startup.bat" spawn="false">
+		</exec>
+		<echo>+-----------------------------+</echo>
+		<echo>| T O M C A T   S T A R T E D |</echo>
+		<echo>+-----------------------------+</echo>
+	</target>
+	
+	
+	
+</project>

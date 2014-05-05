@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- Sample build file used to retrieve svnant's sources -->
+<project name="svn-test" basedir="." default="checkoutLatest">
+  
+  <!--  all properties are in build.properties --> 
+  <property file="../AntLib/svn.properties" /> 
+
+  <!-- path to the svnant libraries. Usually they will be located in ANT_HOME/lib -->
+  <path id="svnant.classpath">
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>  
+  
+  <!-- load the svn task -->
+  <typedef resource="org/tigris/subversion/svnant/svnantlib.xml"  >
+  				<classpath>
+  	                        <fileset dir="${lib.dir}">
+  	                        		<include name="jna.jar"/>
+  	                        	  	<include name="ganymed.jar"/>
+  	                                <include name="svnant.jar"/>
+  	                                <include name="svnClientAdapter.jar"/>
+  	                                <include name="svnkit.jar"/>
+                            	    <include name="svnjavahl.jar"/>
+  	                        		
+  	                        </fileset>
+  	            </classpath>
+  	
+  </typedef>
+  <svnSetting username="${svnant.repository.user}" password="${svnant.repository.passwd}" javahl="false" id="settings"/>
+	
+	<echoproperties/>
+	
+	
+  <target name="clean">
+    <delete dir="source"/>
+  </target>
+
+  
+  <!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="init">
+            <mkdir dir="${SEBIDWBIS.dir}" />
+    	    <mkdir dir="${SEBIDWBISCommon.dir}"/>
+    	    <mkdir dir="${SEBIDWBISController.dir}"/>
+    	    <mkdir dir="${SEBIDWBISEJB.dir}"/>
+    	    <mkdir dir="${SEBIDWBISWeb.dir}"/>
+    	    <mkdir dir="${SEBIDWBISPhase3.dir}"/>
+    	    <mkdir dir="${SEBIDWBISPhase2.dir}"/>
+    </target>
+
+  <target name="checkoutLatest" depends="clean,init">
+  	
+    <svn refid="settings">
+    
+    	
+      <checkout url="${svnant.SEBIDWBIS.url}" revision="HEAD" destPath="${SEBIDWBIS.dir}" />
+      <checkout url="${svnant.SEBIDWBISCommon.url}" revision="HEAD" destPath="${SEBIDWBISCommon.dir}" />
+      <checkout url="${svnant.SEBIDWBISController.url}" revision="HEAD" destPath="${SEBIDWBISController.dir}" />
+      <checkout url="${svnant.SEBIDWBISEJB.url}" revision="HEAD" destPath="${SEBIDWBISEJB.dir}" />
+      <checkout url="${svnant.SEBIDWBISWeb.url}" revision="HEAD" destPath="${SEBIDWBISWeb.dir}" />
+      <checkout url="${svnant.SEBIDWBISPhase3.url}" revision="HEAD" destPath="${SEBIDWBISPhase3.dir}" />
+      <checkout url="${svnant.SEBIDWBISPhase2.url}" revision="HEAD" destPath="${SEBIDWBISPhase2.dir}" />
+    </svn>
+  </target>
+
+</project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Nov 26, 2012 3:56:32 PM                                                        
+
+     WebXmlMerger    
+     Merges two web.xml files to one
+                   
+     397797                                                                
+     ====================================================================== -->
+<project name="WebXmlMerger" default="merge">
+    <description>
+            Merges two web.xml files to one
+    </description>
+	<taskdef name="webxmlmerge"    classpath="../AntLib/WebXmlMerger.jar;../AntLib/jdom2.jar" 
+		classname="com.sebi.antask.WebXmlBuilder"/>
+
+    <!-- ================================= 
+          target: merge              
+         ================================= -->
+    <target name="merge" description="Merges two web.xml files to one">
+    	
+    	 	<copy file="../../SEBIDWBISWeb/WebContent/WEB-INF/web.xml" tofile="../xmls/ph1.xml" overwrite="true"/>
+    	<webxmlmerge des="../xmls/ph1.xml" src="../xmls/ph3.xml">
+    	   
+    	  </webxmlmerge>
+
+    	 <!-- 	<xmltask clearbuffers="true" failWithoutMatch="true" indent="true" source="../xmls/ph1.xml" dest="../xmls/web.xml" >
+        		<insert path="/web-app/display-name"  xml="Development Application"/> 
+        		
+        		 <insert path="/web-app/servlet[1]" position="before" file="../xmls/ph3.xml" />
+        	</xmltask>-->
+    </target>
+
+    
+
+</project>

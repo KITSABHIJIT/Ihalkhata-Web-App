@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Nov 15, 2012 11:56:35 AM                                                        
+
+     minification    
+     Minifies javascript files
+                   
+     397797                                                                
+     ====================================================================== -->
+<project name="minification" default="jsminify">
+    <description>
+            Minifies javascript files
+    </description>
+	<property	name="ant-tasks-dir"	value="../AntLib"/>
+	<taskdef name="jscomp" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="${ant-tasks-dir}/compiler.jar"/> 
+
+    <!-- ================================= 
+          target: jsminify              
+         ================================= -->
+    <target name="jsminify" depends="" description="Minifies javascript files">
+    	<jscomp compilationLevel="simple" warning="verbose" debug="false"      
+    		    	    	    				output="${classes-dir}/SEBIDWBISWeb/*.min.js">    
+    		    	    	    				    
+    		    	    	    				<sources dir="${SEBIDWBISWeb-dir}/WebContent">     
+    		    	    	    					<file name="**/*.js"/>
+    		    	    				        </sources> 
+    		    	    	 </jscomp> 
+    </target>
+	<target name="run" >   
+			<foreach target="minification" param="foreach.file" parallel="true" maxThreads="10"> 
+				<path>            
+												<fileset dir="${classes-dir}/SEBIDWBISWeb/js/reportJs" casesensitive="yes">   
+													<include name="**/*.js"/>   
+												</fileset>           
+				</path>
+				<path>            
+					<fileset dir="${classes-dir}/SEBIDWBISWeb/js/BoReportsJS" casesensitive="yes">   
+						<include name="**/*.js"/>
+						
+					</fileset>           
+				</path>        
+				<path>            
+						<fileset dir="${classes-dir}/SEBIDWBISWeb/js/commonJs" casesensitive="yes">   
+							<include name="**/*.js"/>   
+						</fileset>           
+					</path>
+				<path>            
+									<fileset dir="${classes-dir}/SEBIDWBISWeb/js/CaseJs" casesensitive="yes">   
+										<include name="**/*.js"/>   
+									</fileset>           
+				</path>
+			</foreach>   
+		</target> 
+	<!-- ================================= 
+	          target: minification              
+	         ================================= -->
+	    <target name="minification" depends="" description="description">
+	    	<!-- This gets the filename without the directory path. -->
+			<basename property="file.js" file="${foreach.file}"/> 
+	    	<!-- Using Javascript functions to work out the paths --> 
+	    	<script language="javascript"> <![CDATA[   
+	    		// get values          
+	    		fullPath = project.getProperty("foreach.file");  
+	    		fileOnly = project.getProperty("file.js");   
+	    		pathOnly = fullPath.substring(0, fullPath.indexOf(fileOnly));   
+	    		// store the result in a new property    
+	    		project.setProperty("directory",pathOnly);          
+	    		]]> </script>   
+	    	<echo message="Compressing file ${file.js} in ${directory}" />      
+	    	<jscomp compilationLevel="whitespace" warning="verbose" debug="true" output="${foreach.file}">     
+	    		
+	    		<sources dir="${directory}">      
+	    			<file name="${file.js}"/>        
+	    		</sources>         
+	    	</jscomp> 
+	    </target>
+  
+</project>

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Nov 8, 2012 2:16:26 PM                                                        
+
+     SEBI DWBIS    
+     This Ant file builds the SEBI DWBIS ear 
+                   
+     397797                                                                
+     ====================================================================== -->
+<project name="project" default="ear">
+    <description>
+    	This Ant file builds the SEBI DWBIS ear
+    </description>
+	  <tstamp/>
+	<record action="start" append="false" loglevel="debug" name="../Logs/logger.log"/>
+
+	<property file="./common.properties"/>
+	
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+			<classpath>
+				<pathelement location="${ant-tasks-dir}/ant-contrib.jar" />
+			</classpath>
+	</taskdef>
+	<taskdef	name="sqlxmlvalidator"	classname="com.sqlxmlvalidator.Main"	classpath="${ant-tasks-dir}/sqlxmlvalidator.jar"/>
+
+	<target name="deploy" description="Creates and deploy's ear in JBOSS">
+		<sequential>
+			 <antcall target="stop-jboss" />
+			 <antcall target="ear" />
+			 <copy file="${ear-dir}/SEBIDWBIS.ear" todir="${jboss.deploy.dir}" verbose="true"/>
+			 <antcall target="start-jboss" />
+		</sequential>
+	</target>
+	<!-- Stop Jboss -->
+	<target name="stop-jboss" description="Stops JBOSS Server" >
+		<exec executable="${jboss.bin.dir}/shutdown.bat" spawn="false">
+			<arg line="-S" />
+		</exec>
+		<echo>+-----------------------------+</echo>
+		<echo>| J B O S S   S T O P P E D   |</echo>
+		<echo>+-----------------------------+</echo>
+	</target>
+
+	<!-- Start Jboss -->
+	<target name="start-jboss" description="Starts JBOSS Server" >
+		<exec executable="${jboss.bin.dir}/run.bat" spawn="false">
+		</exec>
+		<echo>+-----------------------------+</echo>
+		<echo>| J B O S S   S T A R T E D   |</echo>
+		<echo>+-----------------------------+</echo>
+	</target>
+
+	
+    <!-- ================================= 
+          target: ear              
+         ================================= -->
+    <target name="ear"  depends="initiate,commonjar,controllerjar,phase2jar,phase3jar,war" description="This Ant file builds the SEBI DWBIS ear" >
+		<copy file="${ant-tasks-dir}/SEBIDWBISEJB.jar" todir="${build-dir}" verbose="true"/>	
+    	<echo message="Creating EAR file..........."/>
+	   <ear destfile="${ear-dir}/SEBIDWBIS.ear" appxml="${SEBIDWBIS-dir}/EarContent/META-INF/application.xml" compress="true" index="true" update="true" roundup="true" >
+        <fileset dir="${build-dir}" id="id" >
+		  	    <exclude name="ear" />
+		</fileset>
+        </ear>
+    </target>
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: initiate                      
+	         - - - - - - - - - - - - - - - - - -->
+	    <target name="initiate">
+	    	<if>
+	    		<available file="${project-folder}" type="dir" />
+				<then>
+					<echo message="Deleting ${project-folder}............"/>
+					<delete dir="${project-folder}" >
+					</delete>
+					
+				</then>
+	    	</if>
+	    	<if>
+	    		<not><available file="${deploy-dir}" type="dir" /></not>
+	    		<then>
+	    			<mkdir dir="${deploy-dir}" />
+	    		</then>
+	    	</if>
+					<mkdir dir="${project-folder}" />
+					<mkdir dir="${ear-dir}" />
+					<mkdir dir="${build-dir}" />
+	    			<mkdir dir="${build-lib-dir}" />
+					<mkdir dir="${classes-dir}" />
+	    	        <mkdir dir="${classes-dir}/SEBIDWBISCommon" />
+	    	        <mkdir dir="${classes-dir}/SEBIDWBISController"/>
+	    		     <mkdir dir="${classes-dir}/SEBIDWBISWeb"/>
+	    			<if>
+	    					<isset property="SEBIDWBISPhase2-dir"/>
+	    					<then>
+	    						<mkdir dir="${classes-dir}/SEBIDWBISPhase2"/>
+	    					</then>
+	    			</if>
+	    			<if>
+	    					<isset property="SEBIDWBISPhase3-dir"/>
+	    					<then>
+	    						<mkdir dir="${classes-dir}/SEBIDWBISPhase3"/>
+	    					</then>
+	    			</if>
+	    	        
+	    		   
+	    		   
+	    
+	           
+	    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: commonjar                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="commonjar" depends="commonbuild">
+    	<echo message="Creating SEBIDWBIS Common jar file..........."/>
+           <jar destfile="${build-lib-dir}/SEBIDWBISCommon.jar" basedir="${classes-dir}/SEBIDWBISCommon"/> 
+    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: commonbuild                      
+	         - - - - - - - - - - - - - - - - - -->
+	    <target name="commonbuild" >
+	    		<echo message="Compiling source ${SEBIDWBISCommon-dir}/src "/>
+	            <javac srcdir="${SEBIDWBISCommon-dir}/src"     destdir="${classes-dir}/SEBIDWBISCommon"   debug="on" optimize="on" source="1.6" target="1.6"  >
+	            	 <classpath>   
+	            	                <fileset dir="${lib-dir}">   
+	            	                    <include name="**/*.jar" />   
+	            	                </fileset>   
+					</classpath>
+	            </javac>
+	    	    
+	    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: controllerjar                      
+	         - - - - - - - - - - - - - - - - - -->
+	    <target name="controllerjar" depends="controllerbuild">
+	    	<echo message="Creating SEBIDWBIS Controller jar file..........."/>
+	           <jar destfile="${build-lib-dir}/SEBIDWBISController.jar" basedir="${classes-dir}/SEBIDWBISController"/> 
+	    </target>
+	
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: controllerbuild                      
+	         - - - - - - - - - - - - - - - - - -->
+	    <target name="controllerbuild" >
+	    	<echo message="Compiling source ${SEBIDWBISController-dir}/src "/>
+	            <javac srcdir="${SEBIDWBISController-dir}/src"     destdir="${classes-dir}/SEBIDWBISController"   debug="on" optimize="on" source="1.6" target="1.6" >
+	            	 <classpath>   
+	            	 				   
+	            	                <fileset dir="${lib-dir}">   
+	            	                    <include name="**/*.jar" />   
+	            	                </fileset>
+	            	 				<fileset dir="${build-lib-dir}">   
+	            	 		            <include name="SEBIDWBISCommon.jar" />   
+	            	 		        </fileset>
+					</classpath>
+	            	
+	            </javac>
+	    	    
+	    </target>
+	<!-- - - - - - - - - - - - - - - - - - 
+		          target: phase3jar                      
+		         - - - - - - - - - - - - - - - - - -->
+		    <target name="phase3jar" depends="phase3build">
+		    	<if>
+		    			
+		    			<isset property="SEBIDWBISPhase3-dir"/>
+		    			<then>
+		    				<echo message="Creating SEBIDWBIS Phase3 jar file..........."/>
+		           			<jar destfile="${build-lib-dir}/SEBIDWBISPhase3.jar" basedir="${classes-dir}/SEBIDWBISPhase3"/> 
+		        	    </then>
+		        	    <else>
+		        	     	<echo message="Phase3 Jar not created......"/>
+		        	     </else>
+		        </if>
+		    </target>
+		
+		
+		<!-- - - - - - - - - - - - - - - - - - 
+		          target: phase3build                      
+		         - - - - - - - - - - - - - - - - - -->
+		    <target name="phase3build" >
+		    	
+		   	<if>
+		   			
+		   			<isset property="SEBIDWBISPhase3-dir"/>
+		   			
+		     		<then>
+		    		<echo message="Compiling source ${SEBIDWBISPhase3-dir}/src "/>
+		    	
+		            <javac srcdir="${SEBIDWBISPhase3-dir}/src"     destdir="${classes-dir}/SEBIDWBISPhase3"   debug="on" optimize="on" source="1.6" target="1.6" >
+		            	 <classpath>   
+		            	 				   
+		            	                <fileset dir="${lib-dir}">   
+		            	                    <include name="**/*.jar" />   
+		            	                </fileset>
+		            	 				<fileset dir="${build-lib-dir}">   
+		            	 		            <include name="SEBIDWBISCommon.jar" /> 
+		            	 					<include name="SEBIDWBISController.jar" />
+		            	 		        </fileset>
+						</classpath>
+		            	
+		            </javac>
+		     	    </then>
+		     		<else>
+		     			<echo message="Phase3 Building ignored......"/>
+		     		</else>
+	    	</if>
+		    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: phase2jar                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="phase2jar" depends="phase2build">
+    	<if>
+    		
+    		<isset property="SEBIDWBISPhase2-dir"/>
+    		
+    	    <then>
+    			<echo message="Creating SEBIDWBIS Phase2 jar file..........."/>
+    	   		<jar destfile="${build-lib-dir}/SEBIDWBISPhase2.jar" basedir="${classes-dir}/SEBIDWBISPhase2"/> 
+   			</then>
+       		<else>
+       			<echo message="Phase2 Jar not created......"/>
+       		</else>
+       	</if>
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: phase2build                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="phase2build">
+    	<if>
+    		
+    		<isset property="SEBIDWBISPhase2-dir"/>
+    		
+    		<then>
+    		<echo message="Compiling source ${SEBIDWBISPhase2-dir}/src "/>
+    	    	<javac srcdir="${SEBIDWBISPhase2-dir}/src"     destdir="${classes-dir}/SEBIDWBISPhase2"   debug="on" optimize="on" source="1.6" target="1.6" >
+    	    			            	 <classpath>   
+    	    			            	 				   
+    	    			            	                <fileset dir="${lib-dir}">   
+    	    			            	                    <include name="**/*.jar" />   
+    	    			            	                </fileset>
+    	    			            	 				<fileset dir="${build-lib-dir}">   
+    	    			            	 		            <include name="SEBIDWBISCommon.jar" /> 
+    	    			            	 					<include name="SEBIDWBISController.jar" />
+    	    			            	 		        </fileset>
+    	    							</classpath>
+    	    			            	
+    	         </javac>
+    			</then>
+    		<else>
+    			<echo message="Phase2 Building ignored......"/>
+    		</else>
+    	</if>
+    
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: war                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="war" depends="integration,warbuild">
+    	<echo message="Creating SEBIDWBISWeb war file...."/>
+            <war destfile="${build-dir}/SEBIDWBISWeb.war" basedir="${classes-dir}/SEBIDWBISWeb" webxml="${classes-dir}/SEBIDWBISWeb/WEB-INF/web.xml"></war>
+    </target>
+
+	
+
+	
+	 <!-- - - - - - - - - - - - - - - - - - 
+          target: integration                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="integration">
+    	<sequential>
+    		<echo message="Copying SEBIDWBISWeb static contents...."/>
+            <copy todir="${classes-dir}/SEBIDWBISWeb" overwrite="true">
+    			<fileset dir="${SEBIDWBISWeb-dir}/WebContent" id="copy">
+    				<exclude name="*.svn"/>
+   			    </fileset>
+    		</copy>
+    		 
+    			 
+    		
+    	  <if>
+    	  	
+    	  	<isset property="SEBIDWBISPhase3-dir"/>
+    	  	
+    		<then>
+			    		<echo message="Copying SEBIDWBISPhase3  js contents...."/>
+			    		<copy todir="${classes-dir}/SEBIDWBISWeb/phase3" overwrite="true">
+			    				<fileset dir="${SEBIDWBISPhase3-dir}/WebContent/phase3">
+			    					<exclude name="*.svn"/>
+			    				</fileset>		
+			    		</copy>
+			    		<echo message="Copying SEBIDWBISPhase3  classes contents...."/>
+			    	    <copy todir="${classes-dir}/SEBIDWBISWeb/WEB-INF/classes" overwrite="true">
+			    				<fileset dir="${SEBIDWBISPhase3-dir}/WebContent/WEB-INF/classes">
+			    					<include name="**/*.properties"/>
+			    					<exclude name="*.svn"/>
+			    				</fileset>
+			    		</copy>
+    		</then>
+    	  	<else>
+    	  	    			<echo message="Phase3 Static Content not Copied......"/>
+    	  	</else>
+    	 </if>	
+    	 <if>
+    	 	  <isset property="SEBIDWBISPhase2-dir"/>
+   			<then>
+    		
+    				<echo	message="Validating SQL XML files..."/>
+    				<sqlxmlvalidator>
+    					<fileset	dir="${SEBIDWBISPhase2-dir}/sqldata">
+    						<include	name="**/*.xml"/>
+    					</fileset>
+    				</sqlxmlvalidator>
+
+    				<echo	message="Copying SQL XML files..."/>
+    				<copy	todir="${classes-dir}/SEBIDWBISWeb/WEB-INF/sqldata" overwrite="true">
+    					<fileset	dir="${SEBIDWBISPhase2-dir}/sqldata">
+    						<include	name="**/*.xml"/>
+    					</fileset>
+    				</copy>
+    			
+    				<echo	message="Copying Report Query files..."/>
+    				<copy	todir="${classes-dir}/SEBIDWBISWeb/WEB-INF/reportqueries" overwrite="true">
+    					<fileset	dir="${SEBIDWBISPhase2-dir}/reportqueries">
+    						<include	name="**/*.xml"/>
+    					</fileset>
+    				</copy>	
+    				<echo	message="Copying Excel-Report properties files..."/>
+    				<copy	todir="${classes-dir}/SEBIDWBISWeb/WEB-INF/excelreporttemplates" overwrite="true">
+    						<fileset	dir="${SEBIDWBISPhase2-dir}/excelreporttemplates">
+    							<include	name="**/*.properties"/>
+    						</fileset>
+    				</copy>
+
+    			    				
+    				<echo	message="Copying flex-charts..."/>
+
+    				<copy	todir="${classes-dir}/SEBIDWBISWeb/charts" overwrite="true">
+    					
+    					<fileset	dir="${SEBIDWBISPhase2-dir}/charts">
+    						<include	name="**/*.*"/>
+    					</fileset>
+    				</copy>
+
+    				<echo message="Copying spring config files..."/>
+    				<copy	todir="${classes-dir}/SEBIDWBISWeb/WEB-INF" overwrite="true">
+    					<fileset dir="${SEBIDWBISPhase2-dir}/springconfigfiles/">
+    						<include	name="**/*.xml"/>
+    					</fileset>
+    				</copy>
+    				<echo message="Copying properties files..."/>
+    				<copy	todir="${classes-dir}/SEBIDWBISWeb/WEB-INF/classes" overwrite="true">
+    					<fileset dir="${SEBIDWBISPhase2-dir}/properties/">
+    						<include	name="**/*.properties"/>
+    					</fileset>
+    				</copy>
+    			
+    				<echo message="Copying Excel-XML files..." />
+    				<copy
+    					todir="${classes-dir}/SEBIDWBISWeb/WEB-INF/exceltemplates">
+    					<fileset dir="${SEBIDWBISPhase2-dir}/exceltemplates">
+    						<include name="**/*.xml" />
+    					</fileset>
+    				</copy>
+    				<copy todir="${classes-dir}/SEBIDWBISWeb" overwrite="true">
+    					<fileset dir="${SEBIDWBISPhase2-dir}">
+    						<include name="**/*.html"/>
+    						<include name="**/*.htm"/>
+    						<include name="**/*.js"/>
+    						<include name="**/*.jsp"/>
+    						<include name="**/*.css"/>
+    						<include name="**/*.jpg"/>
+    						<include name="**/*.jpeg"/>
+    						<include name="**/*.gif"/>
+    					</fileset>
+    				</copy>
+    			</then>
+    	 		<else>
+    	 	      			<echo message="Phase2 Static Content not Copied......"/>
+    	 	    </else>
+   		 </if>	
+    	  	        <copy todir="${classes-dir}/SEBIDWBISWeb/WEB-INF/lib" overwrite="true">
+    	    				<fileset dir="${build-lib-dir}">
+    	    					<include name="**/*.jar"/>
+    	    					
+    	    				</fileset>
+    	    </copy>
+    		
+    		
+    			
+    	</sequential>	
+    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: warbuild                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="warbuild">
+    	<echo message="Compiling SEBIDWBISEWeb source........."/>
+    	   <javac srcdir="${SEBIDWBISWeb-dir}/src"     destdir="${classes-dir}/SEBIDWBISWeb/WEB-INF/classes"   debug="on" optimize="on" source="1.6" target="1.6" >
+    			            	 <classpath>   
+    			            	 				   
+    			            	                <fileset dir="${lib-dir}">   
+    			            	                    <include name="**/*.jar" />   
+    			            	                </fileset>
+    			            	 				<fileset dir="${build-dir}/lib">   
+    			            	 		            <include name="SEBIDWBISCommon.jar" /> 
+    			            	 					<include name="SEBIDWBISController.jar" />
+    			            	 		        </fileset>
+    							</classpath>
+    			            	
+    		</javac>
+    </target>
+	
+
+</project>
