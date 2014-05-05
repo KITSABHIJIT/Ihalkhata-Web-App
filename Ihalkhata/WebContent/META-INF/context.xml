@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true">
+	<Environment name="jdbc/dbusername" value="abhijit"
+		type="java.lang.String" />
+	<Environment name="jdbc/dbpasswd" value="abhijit" type="java.lang.String" />
+	<Environment name="jdbc/dbname" value="expdb" type="java.lang.String" />
+	<Resource name="jdbc/calbook" auth="Container" type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3399/expdb1"
+		username="abhijit" password="abhijit" />
+</Context>

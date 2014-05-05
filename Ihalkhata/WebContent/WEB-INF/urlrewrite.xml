@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<!-- Configuration file for UrlRewriteFilter http://tuckey.org/urlrewrite/ -->
+<urlrewrite default-match-type="wildcard">
+<!--
+	<rule>
+		<from>/com_exp_cemk_extjs_js/graph/jquery-1.6.1.js</from>
+		<to type="redirect">https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js</to>
+	</rule>
+	<rule>
+		<from>/com_exp_cemk_extjs_js/graph/adapter-extjs.js</from>
+		<to type="redirect">http://financo.googlecode.com/svn/trunk/web/js/ux/adapter-extjs.js</to>
+	</rule>
+	<rule>
+		<from>/com_exp_cemk_extjs_js/graph/Ext.ux.HighChart.js</from>
+		<to type="redirect">http://financo.googlecode.com/svn/trunk/web/js/ux/Ext.ux.HighChart.js</to>
+	</rule>
+	<rule>
+		<from>/com_exp_cemk_adapter/ext/ext-base.js</from>
+		<to type="redirect">http://dev.sencha.com/deploy/ext-3.4.0/adapter/ext/ext-base.js</to>
+	</rule>
+	<rule>
+		<from>/com_exp_cemk_extjs_js/ext-all-debug.js</from>
+		<to type="redirect">http://dev.sencha.com/deploy/ext-3.4.0/ext-all-debug.js</to>
+	</rule>
+	<rule>
+		<from>/com_exp_cemk_extjs_js/examples.js</from>
+		<to type="redirect">http://dev.sencha.com/deploy/ext-3.4.0/examples/shared/examples.js</to>
+	</rule>
+	<rule>
+		<from>/com_exp_cemk_css/ext-all.css</from>
+		<to type="redirect">http://dev.sencha.com/deploy/ext-3.4.0/resources/css/ext-all.css</to>
+	</rule>
+	<rule>
+		<from>/com_exp_cemk_extjs_js/graph/gray.js</from>
+		<to type="redirect">http://www.highcharts.com/js/themes/gray.js</to>
+	</rule>
+	<rule>
+		<from>/com_exp_cemk_feeds/tripleflap.js</from>
+		<to type="redirect">http://android.programmerguru.com/wp-content/plugins/anmiated-twitter-bird/js/tripleflap.js</to>
+	</rule>
+	<rule>
+		<from>/com_exp_cemk_feeds/birdsprite.png</from>
+		<to type="redirect">http://android.programmerguru.com/wp-content/plugins/anmiated-twitter-bird/birdsprite.png</to>
+	</rule>
+-->
+</urlrewrite>
+

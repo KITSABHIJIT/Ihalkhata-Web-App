@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>CSS Mac Dock</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/interface.js"></script>
+
+<!--[if lt IE 7]>
+ <style type="text/css">
+ div, img { behavior: url(iepngfix.htc) }
+ </style>
+<![endif]-->
+
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="dock" id="dock">
+  <div class="dock-container">
+  <a class="dock-item" href="#"><img src="images/User.png" alt="user" /><span>User</span></a> 
+  <a class="dock-item" href="#"><img src="images/Pages 512 Original.png" alt="Enter Data" /><span>Enter Data</span></a> 
+  <a class="dock-item" href="#"><img src="images/Icon-manual.png" alt="Expense Records" /><span>Expense Records</span></a> 
+  <a class="dock-item" href="#"><img src="images/expense-recorder-pro-icon.png" alt="Payment Details" /><span>Payment Details</span></a> 
+  <a class="dock-item" href="#"><img src="images/Colourful_Chart.png" alt="Expense Details" /><span>Expense Details</span></a>
+  <a class="dock-item" href="#"><img src="images/rsz_images.png" alt="Individual Expense" /><span>Individual Expense</span></a>
+  <a class="dock-item" href="#"><img src="images/pdf.png" alt="Expense Details" /><span>Generate Pdf</span></a>
+  <a class="dock-item" href="#"><img src="images/history.png" alt="Expense Details" /><span>Track Expense</span></a>
+  <a class="dock-item" href="#"><img src="images/email_icon.png" alt="Send Mail" /><span>Send Mail</span></a> 
+  
+ 
+</div>
+</div>
+<script type="text/javascript">
+	
+	$(document).ready(
+		function()
+		{
+			$('#dock').Fisheye(
+				{
+					maxWidth: 50,
+					items: 'a',
+					itemsText: 'span',
+					container: '.dock-container',
+					itemWidth: 40,
+					proximity: 90,
+					halign : 'center'
+				}
+			)
+		}
+	);
+
+</script>
+</body>
+</html>
