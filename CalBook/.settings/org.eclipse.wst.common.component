@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="CalBook">
+        <wb-resource deploy-path="/" source-path="/EarContent"/>
+        <dependent-module archiveName="SendMail.jar" deploy-path="/lib" handle="module:/resource/SendMail/SendMail">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="log4j.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/log4j.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jcommon-1.0.16.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/jcommon-1.0.16.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ezmorph-1.0.6.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/ezmorph-1.0.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-dao.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/spring-dao.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jfreechart-1.0.13.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/jfreechart-1.0.13.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SendMail.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/SendMail.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mysql-connector-java-5.0.8-bin.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/mysql-connector-java-5.0.8-bin.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-beanutils-1.8.3.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/commons-beanutils-1.8.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/commons-lang.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GenericComponents.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/GenericComponents.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpringDataAccess.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/SpringDataAccess.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-core.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/spring-core.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="AplicationLibrary.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/AplicationLibrary.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-jdbc-2.5.6.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/spring-jdbc-2.5.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-context-2.0.5.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/spring-context-2.0.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-1.1.1.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/commons-logging-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections-3.2.1.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/commons-collections-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dataAccess.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/dataAccess.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="entry.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/entry.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ReportGenerationService.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/ReportGenerationService.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-web-2.0.5.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/spring-web-2.0.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activation.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/activation.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mail.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/mail.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="payment.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/payment.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="calc.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/calc.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-lib-2.4-jdk15.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/json-lib-2.4-jdk15.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-beans-2.5.6.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/spring-beans-2.5.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-2.5.6.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/spring-2.5.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ihalkhata.war" deploy-path="/" handle="module:/resource/ihalkhata/ihalkhata">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="iText-2.1.5.jar" deploy-path="/lib" handle="module:/classpath/lib/CalBook/iText-2.1.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
