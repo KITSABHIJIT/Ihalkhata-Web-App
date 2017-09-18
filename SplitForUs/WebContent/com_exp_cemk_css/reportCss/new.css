@@ -1,0 +1,107 @@
+#dolphincontainer{position:relative;padding:14px 0 0 0;border-bottom: 0px solid ; color:#FFFFFF;width:100%;font-family:Helvetica,Arial,Verdana,sans-serif;}
+#dolphinnav{position:relative;float:right;font-size:12px;text-transform:uppercase;font-family:Helvetica,Arial,Verdana,sans-serif;font-weight:bold;background:#fff url(images/dolphin_bg.gif) repeat-x bottom left;}
+#dolphinnav ul{margin:0;padding:0;list-style-type:none;width:auto;float:left;list-style-type:none;}
+#dolphinnav ul li{display:block;float:left;margin:0 1px;list-style-type:none;}
+#dolphinnav ul li a{display:block;float:left;color:#EAF3F8;text-decoration:none;padding:0 0 0 20px;height:33px;font-family:Helvetica,Arial,Verdana,sans-serif;}
+#dolphinnav ul li a span{padding:12px 20px 0 0;height:21px;float:left;}
+#dolphinnav ul li a:hover{color:#fff;background:transparent url(images/dolphin_bg-OVER.gif) repeat-x bottom left;}
+#dolphinnav ul li a:hover span{display:block;width:auto;cursor:pointer;}
+#dolphinnav ul li a.current,#dolphinnav ul li a.current:hover{color:#fff;background:#1D6893 url(images/dolphin_left-ON.gif) no-repeat top left;line-height:275%;}
+#dolphinnav ul li a.current span{float:left;display:block;padding:0 20px 0 0;width:auto;background:#1D6893 url(images/dolphin_right-ON.gif) no-repeat top right;height:33px;}
+
+#dolphin_inner{background:#143D55;margin:33px 0 0 0 ;font-family:Helvetica,Arial,Verdana,sans-serif;text-transform:uppercase;font-weight:bold; font-size:11px;width:1030px; height: 25px;}
+
+#dolphin_inner a:link, #dolphin_inner a:visited, #dolphin_inner a:active{float:left;display:block;font-weight:bold;text-decoration:none;
+	
+	
+}
+
+#dolphin_inner ul li{
+float:left;
+
+}
+#dolphin_inner li a {
+	font-family:Helvetica,Arial,Verdana,sans-serif;
+font-size:10px;
+	display:block;
+	float:left;
+font-size:12px;	
+	
+	color:#FFF;
+	
+	padding:0.5em 2em;
+	
+}
+
+#dolphin_inner li a:hover {
+	text-decoration:none;
+
+}
+
+#dolphin_inner li {
+	float:right;
+	position:relative;
+}
+
+.innercontent{display: none;}
+
+
+/* dropdown */
+
+#dolphin_inner li li {
+	padding:0;
+	margin:0;
+	height:2.5em;
+	line-height:2.5em;
+	float:none;
+	font-size: 0.9em;
+	border:0;
+	text-indent:0.2em;
+	display:inline;
+}
+
+#dolphin_inner li li a {
+	color:#CCC;
+	display:block;
+	text-align:left;
+	width:15em;
+	border:0;
+	
+	background:transparent;
+	float:none;
+}
+
+#dolphin_inner li ul {
+	position:absolute;
+	left:-999em;
+	margin-top:2em;
+margin-left:2em;
+	background:#143D55;
+list-style-type:none;
+}
+#dolphin_inner li ul li a{
+font-size:11px;
+width:20em;
+}
+
+
+#dolphin_inner li ul li a:hover { 
+	color:#FFF; 
+	background:url(images/dolphin_bg.gif) repeat-x bottom left;
+
+      
+		
+}
+
+#dolphin_inner li:hover ul, #nav li:hover ul, #nav li.sfhover ul {
+	position:absolute;
+	left:-999em;
+}
+
+#dolphin_inner li:hover ul, #nav li.sfhover ul {
+	left:0;
+	width:25em;
+	padding:0;
+	z-index:1000;
+}
+

@@ -1,0 +1,76 @@
+#grid-example .x-grid-col-1 {
+	TEXT-ALIGN: right
+}
+
+#grid-example .x-grid-col-2 {
+	TEXT-ALIGN: right
+}
+
+#grid-example .x-grid-col-3 {
+	TEXT-ALIGN: right
+}
+
+#grid-example .x-grid-col-4 {
+	TEXT-ALIGN: right
+}
+
+.x-grid-mso#grid-example {
+	BORDER-BOTTOM: #6593cf 1px solid;
+	BORDER-LEFT: #6593cf 1px solid;
+	BORDER-TOP: #6593cf 1px solid;
+	BORDER-RIGHT: #6593cf 1px solid
+}
+
+.x-grid-vista#grid-example {
+	BORDER-BOTTOM: #b3bcc0 1px solid;
+	BORDER-LEFT: #b3bcc0 1px solid;
+	BORDER-TOP: #b3bcc0 1px solid;
+	BORDER-RIGHT: #b3bcc0 1px solid
+}
+
+#xml-grid-example {
+	BORDER-BOTTOM: #cbc7b8 1px solid;
+	POSITION: relative;
+	BORDER-LEFT: #cbc7b8 1px solid;
+	BORDER-TOP: #cbc7b8 1px solid;
+	TOP: 0px;
+	BORDER-RIGHT: #cbc7b8 1px solid;
+	LEFT: 0px
+}
+
+#editor-grid .x-grid-col-2 {
+	TEXT-ALIGN: right
+}
+
+.x-grid3-td-topic B {
+	DISPLAY: block;
+	FONT-FAMILY: tahoma, verdana
+}
+
+.x-grid3-td-topic B I {
+	FONT-STYLE: normal;
+	COLOR: #000;
+	FONT-WEIGHT: normal
+}
+
+.x-grid3-td-topic .x-grid3-cell-inner {
+	WHITE-SPACE: normal
+}
+
+.x-grid3-td-topic A {
+	COLOR: #385f95;
+	TEXT-DECORATION: none
+}
+
+.x-grid3-td-topic A:hover {
+	TEXT-DECORATION: underline
+}
+
+.details .x-btn-text {
+	BACKGROUND-IMAGE: url(details.gif)
+}
+
+.x-resizable-pinned .x-resizable-handle-south {
+	BACKGROUND: url(../../resources/images/default/sizer/s-handle-dark.gif)
+		50% top
+}

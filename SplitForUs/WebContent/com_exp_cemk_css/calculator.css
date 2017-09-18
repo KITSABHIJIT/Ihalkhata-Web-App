@@ -1,0 +1,63 @@
+#calinfoout {
+	background-color: #EEE;
+	width: 258px;
+}
+
+.calinfoinner {
+	padding: 5px;
+	border-top: 1px solid #262626;
+	border-left: 1px solid #262626;
+	border-right: 2px outset #262626;
+	border-bottom: 2px outset #262626;
+}
+
+#calinfoout input {
+	width: 45px;
+	height: 30px;
+	margin: 2px;
+	background-color: #FFF;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 14px;
+	border: 1px solid #262626;
+}
+
+#calinfoout #calInfoOutPut {
+	width: 242px;
+	font-size: 18px;
+	padding: 3px;
+	cursor: text;
+	text-align: right;
+	background-color: #B8C6A3;
+	color: #000;
+}
+
+#calinfoout .calinfonm {
+	color: #FFF;
+	font-weight: bold;
+	background-color: #262626;
+}
+
+#calinfoout .calinfoop {
+	color: #262626;
+	font-weight: bold;
+	background-color: #ccc;
+}
+
+#calinfoout .calinfoeq {
+	color: #F00;
+	font-weight: bold;
+	background-color: #DCADB0;
+}
+
+#calinfoout .calinfofunc {
+	color: #185290;
+	font-weight: bold;
+	background-color: #C8D8E8;
+	height: 23px;
+	padding-bottom: 1px;
+}
+
+#calfootnote {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+}

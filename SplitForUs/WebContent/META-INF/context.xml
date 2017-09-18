@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true">
+	<Environment name="jdbc/dbusername" value="abhijit.roy"
+		type="java.lang.String" />
+	<Environment name="jdbc/dbpasswd" value="mysqlpass1" type="java.lang.String" />
+	<Environment name="jdbc/dbname" value="split4us"
+		type="java.lang.String" />
+	<Resource name="jdbc/calbook" auth="Container" type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://192.168.1.26:3306/split4us"
+		username="abhijit.roy" password="mysqlpass1" />
+</Context>

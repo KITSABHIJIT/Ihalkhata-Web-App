@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<!--
+
+-->
+<html>
+<head>
+<title>SplitForUs</title>
+<script type="text/javascript">
+	window.location = "com_exp_cemk_jsp/login.jsp";
+</script>
+<!-- 
+<meta http-equiv="refresh" content="0; url=http://example.com/" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link
+	href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700"
+	rel="stylesheet" />
+<link rel="stylesheet" href="css/loginpopup.css" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/skel.min.js"></script>
+<script src="com_exp_cemk_js/ajaxFunction.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('a.login-window').click(function() {
+		
+		// Getting the variable's value from a link 
+		var loginBox = $(this).attr('href');
+
+		//Fade in the Popup and add close button
+		$(loginBox).fadeIn(300);
+		
+		//Set the center alignment padding + border
+		var popMargTop = ($(loginBox).height() + 24) / 2; 
+		var popMargLeft = ($(loginBox).width() + 24) / 2; 
+		
+		$(loginBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+		
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+		
+		return false;
+	});
+	
+	// When clicking on the button close or the mask layer the popup closed
+	$('a.close, #mask').live('click', function() { 
+	  $('#mask , .login-popup').fadeOut(300 , function() {
+		$('#mask').remove();  
+	}); 
+	return false;
+	});
+});
+
+function doLogin(){
+	var params = "userName="+document.getElementById("userName").value+"&password="+document.getElementById("password").value;
+	var myJSONtext = ajaxFunction("POST","LoginServlet",false,params);
+	var JSONObject = eval('(' + myJSONtext + ')');
+	
+	if(JSONObject.msg == "Invalid User Name or Password"){
+		alert('Invalid User Name or Password');
+	}else{
+		window.location = JSONObject.url;
+	}
+}
+
+
+</script>
+<noscript>
+	<link rel="stylesheet" href="css/skel-noscript.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style-desktop.css" />
+</noscript>
+[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]
+[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]
+[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]
+</head>
+<body>
+
+	Nav
+	<nav id="nav">
+		<ul>
+			<li><a href="#top">Tutorial</a></li>
+			<li><a href="#work">FAQ</a></li>
+			<li><a href="#contact">Contact</a></li>
+			<li><a href="#login-box" class="login-window">Login</a></li>
+		</ul>
+	</nav>
+
+	Home
+	<div class="wrapper wrapper-style1 wrapper-first">
+		<article class="container" id="top">
+			<div class="row">
+				<div class="4u">
+					<span class="me image image-full"><img
+						src="images/ihalkhata_devices.gif" alt="" /></span>
+				</div>
+				<div class="8u">
+					<header>
+						<h1>
+							Welcome to <strong>SplitForUs</strong>.
+						</h1>
+					</header>
+					<p>
+						And this is <strong>SplitForUs</strong>, a great way to keep track
+						of your expenses and lots more
+					</p>
+					<a href="#work" class="button button-big">Learn what you can do</a>
+				</div>
+			</div>
+		</article>
+	</div>
+
+
+	<div id="login-box" class="login-popup">
+		<a href="#" class="close"><img src="images/close_pop.png"
+			class="btn_close" title="Close Window" alt="Close" /></a>
+		<form method="post" class="signin" action="LoginServlet">
+			<fieldset class="textbox">
+				<label class="username"> <span>Username</span> <input
+					id="userName" name="userName" value="" type="text"
+					autocomplete="on" placeholder="Username">
+				</label> <label class="password"> <span>Password</span> <input
+					id="password" name="password" value="" type="password"
+					placeholder="Password">
+				</label>
+
+				<button class="submit loginbutton" type="button" onClick="doLogin()">Sign
+					in</button>
+
+				<p>
+					<a class="forgot" href="#">Forgot your password?</a>
+				</p>
+
+			</fieldset>
+		</form>
+	</div>
+
+	Work
+	<div class="wrapper wrapper-style2">
+		<article id="work">
+			<header>
+				<h1>Your expenses, simplified</h1>
+				<span>Personal expenses tracking, budget planner, create
+					groups with friends and lots more..</span>
+			</header>
+			<div class="container">
+				<div class="row">
+					<div class="4u">
+						<section class="box box-style1">
+							<span class="icon featured-icon icon-bar-chart"></span>
+							<h3>View interactive charts</h3>
+							<p>Insert your data and viwe nice interactive charts, graphs
+								of your data. Helps you to keep track of all your expenses</p>
+						</section>
+					</div>
+					<div class="4u">
+						<section class="box box-style1">
+							<span class="icon featured-icon icon-money"></span>
+							<h3>Manage your money</h3>
+							<p>With this application never forget a single expense.</p>
+						</section>
+					</div>
+					<div class="4u">
+						<section class="box box-style1">
+							<span class="icon featured-icon icon-mobile-phone"></span>
+							<h3>Android App, Go Mobile</h3>
+							<p>You can access this awesome application from your android
+								device too. Go mobile, go SMART.</p>
+						</section>
+					</div>
+				</div>
+			</div>
+
+		</article>
+	</div>
+
+	Portfolio
+
+
+	Contact
+
+
+
+</body>
+
+ -->
+
+</html>

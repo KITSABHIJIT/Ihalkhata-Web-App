@@ -1,0 +1,67 @@
+.feedback{
+	position:absolute;
+	left:0;
+	bottom:0;
+	z-index: 50000;	
+}
+.feedback a {
+	display:block;
+	height:20px;
+	width:85px;
+	text-align:center;
+	background:blue;
+	border:2px solid gray;
+	/*outline:1px solid #a1a1a1;*/
+	padding:5px;
+	float:left;
+	cursor:pointer;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-khtml-border-radius: 15px;
+	border-radius: 15px;
+	
+	/*Font*/
+	color:#FFF;
+	font-weight:bold;
+	font-size:18px;
+}
+
+.feedback .form{
+	clear:both;
+	height:150px;
+	width:320px;
+	background:#ffffff url(main-bg1.gif);
+	padding:15px;
+	display: none;
+	text-align: center;
+	border:2px solid gray;
+	/*outline:1px solid #a1a1a1;*/
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-khtml-border-radius: 15px;
+	border-radius: 15px;
+}
+.feedback .form textarea{
+	height:80px;
+	width:300px;
+	padding:5px;
+	border:2px solid gray;
+	/*outline:1px solid #a1a1a1;*/
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-khtml-border-radius: 15px;
+	border-radius: 15px;
+	color:blue;
+}
+.feedback .status{
+	font-size:12px;
+	font-weight:bold;
+	text-align: center;
+}
+.feedback .button{
+	border:2px solid gray;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-khtml-border-radius: 15px;
+	border-radius: 15px;
+}
